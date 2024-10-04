@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://betrayed.lol/commands">
+    <title>betrayed - cmds</title>
+    <link rel="icon" href="https://cdn.discordapp.com/avatars/1252001166703853588/1ae97796d5ab14e4b18493a63a7a6137.webp?size=512">
+    <meta name="og:site_name" content="betrayed.lol">
+    <meta name="og:title" content="betrayed - commands">
+    <meta name="og:description" content="check betrayed bot's commands">
+    <meta name="theme-color" content="#010101">
+    <script src='/static/6jiu.js'></script>
+    <script src="/static/pure-snow.js" defer=""></script>
+    <style>
+        body {
+            background-color: #181818; /* Dark background */
+            color: #f0f0f0; /* Light text */
+            font-family: Arial, sans-serif;
+        }
+        .title h1, .title h3 {
+            color: #f0f0f0; /* Light title text */
+        }
+        .command-border {
+            border: 1px solid #444; /* Darker border for commands */
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #222; /* Dark command background */
+        }
+        .command-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #button-container {
+            display: flex;
+            overflow-x: hidden;
+            cursor: grab;
+        }
+        .search input {
+            background-color: #333; /* Dark input background */
+            color: #fff; /* Light input text */
+            border: 1px solid #555; /* Input border */
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+        }
+        button {
+            background-color: #444; /* Button background */
+            color: #f0f0f0; /* Button text color */
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #555; /* Button hover background */
+        }
+    </style>
+</head>
+<body>
+    <div id="snow" data-count="20"></div>
+    <header>
+        <div class="title">
+            <h1>betrayed.lol</h1>
+            <h3>commands</h3>
+        </div>
+    </header>
+        </div>
+    </header>
+    <div class="container">
+        <div class="top">
+            <div class="buttons" id="button-container" onmousedown="startDrag(event)" onmouseup="stopDrag()" onmouseleave="stopDrag()">
+                <button onclick="display('Game Info')"><h3>Game Info <span>9</span></h3></button>
+                <button onclick="display('Starboard')"><h3>Starboard <span>8</span></h3></button>
+                <button onclick="display('Antilink')"><h3>Antilink</h3></button>
+                <button onclick="display('AntiNuke')"><h3>AntiNuke</h3></button>
+                <button onclick="display('Autorole')"><h3>Autorole</h3></button>
+                <button onclick="display('Economy')"><h3>Economy</h3></button>
+                <button onclick="display('Filter')"><h3>Filter</h3></button>
+                <button onclick="display('Fun')"><h3>Fun</h3></button>
+                <button onclick="display('Games')"><h3>Games</h3></button>
+                <button onclick="display('Information')"><h3>Information</h3></button>
+                <button onclick="display('LastFm')"><h3>LastFm</h3></button>
+                <button onclick="display('Level')"><h3>Level</h3></button>
+                <button onclick="display('Logging')"><h3>Logging</h3></button>
+                <button onclick="display('Misc')"><h3>Misc</h3></button>
+                <button onclick="display('Moderation')"><h3>Moderation</h3></button>
+                <button onclick="display('Movie')"><h3>Movie</h3></button>
+                <button onclick="display('Music')"><h3>Music</h3></button>
+                <button onclick="display('Settings')"><h3>Settings</h3></button>
+            </div>
+        </div>
+        <div class="command-list" id="command-list">
+            <!-- Example commands will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script>
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.pageX - document.getElementById('button-container').offsetLeft;
+            scrollLeft = document.getElementById('button-container').scrollLeft;
+            document.getElementById('button-container').style.cursor = 'grabbing';
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.getElementById('button-container').style.cursor = 'grab';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - document.getElementById('button-container').offsetLeft;
+            const walk = (x - startX) * 2; //scroll-fast
+            document.getElementById('button-container').scrollLeft = scrollLeft - walk;
+        }
+
+        document.getElementById('button-container').addEventListener('mousemove', drag);
+
+        function display(category) {
+            const commandList = document.getElementById('command-list');
+            commandList.innerHTML = ''; // Clear existing commands
+
+            // Example commands based on category
+            const commands = {
+                "Antilink": [
+                    { name: 'antilinkwhitelist', command: 'antilinkwhitelist', description: "Manage the anti-link whitelist (add or remove channels/users)." },
+                    { name: 'blacklistlink', command: 'blacklistlink', description: "Add or remove a link from the blacklist, or check if a link is blacklisted." },
+                    { name: 'listwhitelist', command: 'listwhitelist', description: "List all whitelisted items (links, channels, or users) for the server." },
+                    { name: 'setaction', command: 'setaction', description: "Set the action for the anti-link system (warn, kick, ban, delete)." },
+                    { name: 'viewaction', command: 'viewaction', description: "View the current action set for the anti-link system." },
+                    { name: 'viewlinklogs', command: 'viewlinklogs', description: "Set the channel where link logs will be sent." },
+                    { name: 'whitelistlink', command: 'whitelistlink', description: "Manage the whitelist for links (add or remove)." },
+                ],
+                "AntiNuke": [
+                    { name: 'antinuke', command: 'antinuke', description: 'Toggles anti-nuke protection for the server.' },
+                    { name: 'antinuke enable', command: 'antinuke enable', description: 'Enable the antinuke' },
+                    { name: 'antinuke disable', command: 'antinuke disable', description: 'Disable the antinuke' },
+                    { name: 'antinuke status', command: 'antinuke status', description: 'Check the status of your antinuke' },
+                    { name: 'antinuke whitelist', command: 'antinuke whitelist', description: 'Whitelist users to bypass antinuke'}
+                ],
+                "Autorole": [
+                    { name: 'autorole', command: 'autorole', command: 'autorole', description: "Set the autorole." },
+                    { name: 'autorolereset', command: 'autorolereset', command: 'autorolereset', description: "Reset the autorolereset." },
+                ],
+                "Economy": [
+                    { name: 'additem', command: 'additem', description: 'Add an item to your inventory.' },
+                    { name: 'balance', command: 'balance', description: 'Check your current balance.' },
+                    { name: 'buy', command: 'buy', description: 'Buy an item from the shop.' },
+                    { name: 'createaccount', command: 'buy', description: 'Create an economy account.' },
+                    { name: 'daily', command: 'daily', description: 'Claim your daily reward.' },
+                    { name: 'inventory', command: 'inventory', description: 'View your inventory.' },
+                    { name: 'leaderboard', command: 'leaderboard', description: 'Show economy leaderboard.' },
+                    { name: 'lottery', command: 'lottery', description: 'Participate in the lottery.' },
+                    { name: 'pay', command: 'pay', description: 'Pay another user.' },
+                    { name: 'rob', command: 'rob', description: 'Rob another user.' },
+                    { name: 'roll', command: 'roll', description: 'Roll a dice.' },
+                    { name: 'shop', command: 'shop', description: 'Browse the shop.' },
+                    { name: 'work', command: 'work', description: 'Work to earn money.' },
+                    { name: 'hunt', command: 'hunt', description: 'Hunt some animals to gain money.' },
+                    { name: 'catchfish', command: 'catchfish', description: 'Fish to catch various types of fish and earn money.' },
+                ],
+                "Filter": [
+                { name: '8D', command: '8D', description: 'Apply 8D audio effect.' },
+    { name: 'Bassboost', command: 'Bassboost', description: 'Boost the bass in audio.' },
+    { name: 'China', command: 'China', description: 'Apply a China filter.' },
+    { name: 'Chipmunk', command: 'chipmunk', description: 'Make audio sound like a chipmunk.' },
+    { name: 'ClearFilters', command: 'ClearFilters', description: 'Clear all audio filters.' },
+    { name: 'Daycore', command: 'Daycore', description: 'Apply daycore effect.' },
+    { name: 'Distortion', command: 'distortion', description: 'Add distortion effect.' },
+    { name: 'Earrrape', command: 'earrape', description: 'Apply Earrape effect.' },
+    { name: 'Karaoke', command: 'karaoke', description: 'Enable Karaoke mode.' },
+    { name: 'Nightcore', command: 'Nightcore', description: 'Apply Nightcore effect.' },
+    { name: 'Pop', command: 'Pop', description: 'Apply Pop filter.' },
+    { name: 'Soft', command: 'Soft', description: 'Apply Soft filter.' },
+    { name: 'Treblebass', command: 'Treblebass', description: 'Adjust treble and bass levels.' },
+    { name: 'Tremolo', command: 'Tremolo', description: 'Add tremolo effect.' },
+    { name: 'Vaporwave', command: 'Vaporwave', description: 'Apply Vaporwave effect.' },
+    { name: 'Vibrato', command: 'Vibrato', description: 'Add vibrato effect.' },
+                ],
+                "Fun": [
+                    { name: '8ball', command: '8ball', description: 'Let fate choose.' },
+                    { name: 'bitches', command: 'bitches', description: 'See how many bitches a user has.' },
+                    { name: 'dadjoke', command: 'dadjoke', description: 'Get a dadjoke.' },
+                    { name: 'dick', command: 'dick', description: 'Get a dick size.' },
+                    { name: 'fakeban', command: 'fakeban', description: 'Fake ban a user.' },
+                    { name: 'gm', command: 'gm', description: 'Get a good morning greet.' },
+                    { name: 'google', command: 'google', description: 'google <query>.' },
+                    { name: 'serveremojis', command: 'serveremojis', description: 'Get all server emotes.' },
+                    { name: 'shazam', command: 'shazam', description: 'Find a song based on lyrics.' },
+                    { name: 'ship', command: 'ship', description: 'Ship two users.' },
+                    { name: 'sue', command: 'sue', description: 'Sue a user.' },
+                    { name: 'trivia', command: 'trivia', description: 'Play trivia.' },
+                ],
+                "Game Info": [
+                { name: 'appstore', command: 'appstore', description: 'Search for an app on the App Store.' },
+    { name: 'fortnite', command: 'fortnite', description: 'Fortnite cosmetic-related commands.' },
+    { name: 'instagram', command: 'instagram', description: 'Get information on an Instagram profile.' },
+    { name: 'mcstatus', command: 'mcstatus', description: 'Checks the status of a Minecraft server.' },
+    { name: 'shortenurl', command: 'shortenurl', description: 'Shortens a URL using Bitly.' },
+    { name: 'steam', command: 'steam', description: 'Search Steam for a game.' },
+    { name: 'tiktok', command: 'tiktok', description: 'Get information on a TikTok profile.' },
+    { name: 'twitter', command: 'twitter', description: 'View a Twitter profile.' },
+    { name: 'valorant', command: 'valorant', description: 'Get information on a Valorant profile.' },
+                ],
+                "Games": [
+                { name: 'cigarette', command: 'cigarette', description: 'Take a hit of a cigarette.' },
+    { name: 'cigaretteflavor', command: 'cigaretteflavor', description: 'Choose your cigarette flavor. If no flavor is specified, show the current flavor.' },
+    { name: 'cigaretteflavors', command: 'cigaretteflavors', description: 'Manage cigarette flavors.' },
+    { name: 'cigarettehits', command: 'cigarettehits', description: 'View the number of cigarette hits recorded for the server.' },
+    { name: 'minesweeper', command: 'minesweeper', description: 'Play Minesweeper.' },
+    { name: 'guessflag', command: 'guessflag', description: 'Guess a random flag.' },
+    { name: 'joint', command: 'joint', description: 'Play Trivia.' },
+    { name: 'jointpass', command: 'jointpass', description: 'Pass the joint to another user.' },
+    { name: 'juulflavor', command: 'juulflavor', description: 'Change the server’s Juul flavor.' },
+    { name: 'juulhit', command: 'juulhit', description: 'Hit a Juul.' },
+    { name: 'mathquiz', command: 'mathquiz', description: 'Get tested on math.' },
+    { name: 'ratestinky', command: 'ratestinky', description: 'Rates the stinkiness of a user.' },
+    { name: 'roulette', command: 'roulette', description: 'Play Roulette.' },
+    { name: 'rps', command: 'rps', description: 'Challenge another user to a game of Rock, Paper, Scissors.' },
+    { name: 'tictactoe', command: 'tictactoe', description: 'Play TicTacToe against another user.' },
+    { name: 'vape', command: 'vape', description: 'Hit the vape.' },
+    { name: 'vapeflavor', command: 'vapeflavor', description: 'Choose or show your current vape flavor.' },
+    { name: 'vapeflavors', command: 'vapeflavors', description: 'Shows all available vape flavors.' },
+    { name: 'wouldyourather', command: 'wouldyourather', description: 'Play would you rather.' },
+    { name: 'ligsout', command: 'ligsout', description: 'Play Lightsout.' },
+    { name: 'snake', command: 'snake', description: 'Play a game of snake.' },
+    { name: 'findemoji', command: 'findemoji', description: 'Play find the emoji.' },
+    { name: 'hangman', command: 'hangman', description: 'Play hangman.' },
+                ],
+                "Guild": [
+                    { name: 'invitecheck', command: 'invitecheck', description: 'Check how many invites a user has used and how many people they have invited into the server' },
+                    { name: 'searchanime', command: 'searchanime', description: 'Search for an anime on MyAnimeList' },
+                    { name: 'transparent', command: 'transparent', description: 'Removes the background from an image.' },
+                    { name: 'voiceleaderboard', command: 'voiceleaderboard', description: 'Displays the voice channel leaderboard.' },
+                ],
+                "LastFm": [
+                { name: 'lastfm', command: 'lastfm', description: 'Display a users info on last.fm.' },
+    { name: 'lastfmartist', command: 'lastfmartist', description: 'View the an artist info on last.fm.' },
+    { name: 'lastfmhowto', command: 'lastfmhowto', description: 'Provides a tutorial on how to use LastFM with this bot.' },
+    { name: 'lastfmlikes', command: 'lastfmlikes', description: 'View a users likes on last.fm.' },
+    { name: 'lastfmplays', command: 'lastfmplays', description: 'See how many plays a user has.' },
+    { name: 'lastfmtopalbums', command: 'lastfmtopalbums', description: 'Get info about a album on last.fm.' },
+    { name: 'setlastfm', command: 'setlastfm', description: 'Set your Last.Fm.' },
+    { name: 'spotify', command: 'spotify', description: 'Get information about a song on Spotify.' },
+    { name: 'spotifyalbum', command: 'spotifyalbum', description: 'Get info about a spotify artist.' },
+    { name: 'topalbums', command: 'topalbums', description: 'View the top albums of an artist on last.fm.' },
+    { name: 'unsetlastfm', command: 'unsetlastfm', description: 'Unset your last.fm.' },
+                ],
+                "Logging": [
+                { name: 'messagelog', command: 'messagelog', description: 'Log messages.' },
+    { name: 'setupchannellog', command: 'setupchannellog', description: 'Log channels.' },
+    { name: 'setupemojilog', command: 'setupemojilog', description: 'Log emojis.' },
+    { name: 'setupkicklog', command: 'setupkicklog', description: 'Log kicks.' },
+    { name: 'setuplog', command: 'setuplog', description: 'Setup the log channel.' },
+    { name: 'setuplogrole', command: 'setuplogrole', description: 'Setup role logs.' },
+    { name: 'setuptimelog', command: 'setuptimelog', description: 'Setup timeout logs.' },
+                ],
+                "Moderation": [
+                { name: 'ban', command: 'ban', description: 'Bans a user from the server.' },
+    { name: 'createrole', command: 'createrole', description: 'Create a role.' },
+    { name: 'deleterole', command: 'deleterole', description: 'Delete a role.' },
+    { name: 'forcenickname', command: 'forcenickname', description: 'Force a nickname on a user.' },
+    { name: 'hardban', command: 'hardban', description: 'Hardban a user.' },
+    { name: 'hardbanlist', command: 'hardbanlist', description: 'List all hardbans.' },
+    { name: 'kick', command: 'kick', description: 'Kick a user.' },
+    { name: 'lock', command: 'lock', description: 'Lock a channel.' },
+    { name: 'lockdown', command: 'lockdown', description: 'Lock all channels.' },
+    { name: 'nickname', command: 'nickname', description: 'Set a NickName for a user.' },
+    { name: 'picperms', command: 'picperms', description: 'Give a user picperms.' },
+    { name: 'purge', command: 'purge', description: 'Purge messages sent by users.' },
+    { name: 'purgebots', command: 'purgebots', description: 'Purge messages sent by Bots.' },
+    { name: 'purgeimages', command: 'purgeimages', description: 'Purge images sent by users.' },
+    { name: 'purgereactions', command: 'purgereactions', description: 'Purge reactions sent by users.' },
+    { name: 'reminder', command: 'reminder', description: 'Set a reminder.' },
+    { name: 'role', command: 'role', description: 'Role a user.' },
+    { name: 'roleall', command: 'roleall', description: 'Assign a role to everyone.' },
+    { name: 'rolebots', command: 'rolebots', description: 'Role all bots a role.' },
+    { name: 'rolehumans', command: 'rolehumans', description: 'Role all humans a role.' },
+    { name: 'slowmode', command: 'slowmode', description: 'Set slowmode on a channel.' },
+    { name: 'strip', command: 'strip', description: 'Strip a user.' },
+    { name: 'tempban', command: 'tempban', description: 'Temporarily ban a user.' },
+    { name: 'threadlock', command: 'threadlock', description: 'Lock a thread.' },
+    { name: 'threadunlock', command: 'threadunlock', description: 'Unlock a thread.' },
+    { name: 'timeout', command: 'timeout', description: 'Timeout a user.' },
+    { name: 'unban', command: 'unban', description: 'Unban a user.' },
+    { name: 'unbanall', command: 'unbanall', description: 'Unban all banned users.' },
+    { name: 'unlock', command: 'unlock', description: 'Unlock a locked channel.' },
+    { name: 'untimeout', command: 'untimeout', description: 'Untimeout a user.' },
+    { name: 'unwarn', command: 'unwarn', description: 'Unwarn a user.' },
+    { name: 'viewban', command: 'viewban', description: 'View the ban of a user.' },
+    { name: 'warn', command: 'warn', description: 'Warn a user.' },
+    { name: 'rolementionable', command: 'rolementionable', description: 'Toggles whether a role can be mentioned.' },
+    { name: 'rolecolor', command: 'rolecolor', description: 'Changes the color of a specified role.' },
+    { name: 'roleedit', command: 'roleedit', description: 'Changes the name of a specified role.' },
+    { name: 'mutechannel', command: 'mutechannel', description: 'Mutes a user in a specific channel, preventing them from sending messages.' },
+                ],
+                "Movie": [
+                    { name: 'movieawards', description: 'Get information on awards won by a movie.' },
+                    { name: 'moviefacts', description: 'Fetch interesting facts about a movie.' },
+                    { name: 'moviemusic', description: 'Fetch soundtrack information for a movie.' },
+                    { name: 'moviepicker', description: 'Randomly pick a movie for the night.' },
+                    { name: 'movieposter', description: 'Get the poster for a specific movie.' },
+                ],
+                "Music": [
+                { name: 'clearqueue', command: 'clearqueue', description: "Clear the queue." },
+                    { name: 'join', command: 'join', description: "Make the bot connect to your Vc." },
+                    { name: 'leave', command: 'leave', description: "Make the bot leave your Vc." },
+                    { name: 'loop', command: 'loop', description: "Set the loop mode of the player." },
+                    { name: 'lyrics', command: 'lyrics', description: "Get lyrics of a song." },
+                    { name: 'move', command: 'move', description: "Move the bot to another vc." },
+                    { name: 'pause', command: 'pause', description: "Pause the player." },
+                    { name: 'play', command: 'play', description: "Queue a track." },
+                    { name: 'previous', command: 'previous', description: "Play the previous track." },
+                    { name: 'queue', command: 'queue', description: "View the queue." },
+                    { name: 'remove', command: 'remove', description: "Remove a track from the queue." },
+                    { name: 'replay', command: 'replay', description: "Replay a track." },
+                    { name: 'resume', command: 'resume', description: "Resume the player." },
+                    { name: 'shuffle', command: 'shuffle', description: "Shuffle the player." },
+                    { name: 'skip', command: 'skip', description: "Skip the current track." },
+                    { name: 'stop', command: 'stop', description: "Stop the player." },
+                    { name: 'volume', command: 'volume', description: "Change the player volume." }
+                ],
+                "Server": [
+                { name: 'antibot', command: 'antibot', description: 'Toggle antibot system and manage whitelist.' },
+    { name: 'automod', command: 'automod', description: 'Setup the automod system.' },
+    { name: 'autoping', command: 'autoping', description: 'Send a ping to a channel when a user joins and delete it immediately.' },
+    { name: 'counting', command: 'counting', description: 'Setup counting.' },
+    { name: 'endgiveaway', command: 'endgiveaway', description: 'End a running giveaway.' },
+    { name: 'giveaway', command: 'giveaway', description: 'Start a giveaway.' },
+    { name: 'prefix', command: 'prefix', description: 'List the prefix.' },
+    { name: 'rerollgiveaway', command: 'rerollgiveaway', description: 'Reroll the giveaway.' },
+    { name: 'welcomesetup', command: 'welcomesetup', description: 'Setup the welcome channel.' },
+    { name: 'welcomereset', command: 'welcomereset', description: 'Reset the welcome message setup for this server.' },
+    { name: 'autoresponder', command: 'autoresponder', description: 'Sets up auto-responses for specific triggers.' },
+    { name: 'autoresponderlist', command: 'autoresponderlist', description: 'Lists all autoresponder messages.' },
+    { name: 'autoresponderremove', command: 'autoresponderremove', description: 'Remove an autoresponder message.' },
+    { name: 'autoreact', command: 'autoreact', description: 'Sets up auto-reactions for specific conditions.' },
+
+                ],
+                "Settings": [
+                { name: '247', command: '247', description: 'Make betrayed stay in vc 24/7.' },
+    { name: 'antiping', command: 'antiping', description: 'Set punishment for @everyone or @here mentions.' },
+    { name: 'antirole', command: 'antirole', description: 'Prevent others from mass deleting roles from your members.' },
+    { name: 'autonick', command: 'autonick', description: 'Set autonick feature settings.' },
+    { name: 'booster', command: 'booster', description: 'Gives the user a Booster role.' },
+    { name: 'friend', command: 'friend', description: 'Grants the user a Friend role.' },
+    { name: 'girl', command: 'girl', description: 'Grants the user a Girl role.' },
+    { name: 'guest', command: 'guest', description: 'Grants the user a Guest role.' },
+    { name: 'jointocreate', command: 'jointocreate', description: 'Setup jointocreate.' },
+    { name: 'levelup', command: 'levelup', description: 'Simulates a level-up for the user or sets the level-up channel.' },
+    { name: 'setupbanner', command: 'setupbanner', description: 'Sets up the bot to send banners every 2 minutes.' },
+    { name: 'setupfp', command: 'setupfp', description: 'Sets up the bot to send profile pictures every 2 minutes.' },
+    { name: 'vip', command: 'vip', description: 'Grants the user a VIP role.' },
+                ],
+                "Starboard": [
+                { name: 'starboardattachments', command: 'starboardattachments', description: 'Sets the channel, emoji, and star count for starboard.' },
+    { name: 'starboardemoji', command: 'starboardemoji', description: 'Sets the emoji that triggers the starboard messages.' },
+    { name: 'starboardlock', command: 'starboardlock', description: 'Disables or locks starboard from operating.' },
+    { name: 'starboardreset', command: 'starboardreset', description: 'Resets the starboard settings for the guild.' },
+    { name: 'starboardsetup', command: 'starboardsetup', description: 'Sets the channel, emoji, and star count for starboard.' },
+    { name: 'starboardtimestamp', command: 'starboardtimestamp', description: 'Allow or disallow timestamps to appear on Starboard posts.' },
+    { name: 'starboardunlock', command: 'starboardunlock', description: 'Enables/unlocks starboard from operating.' },
+    { name: 'starboardwhitelist', command: 'starboardwhitelist', description: 'View a list of starboard roles that are whitelisted.' },
+                ], 
+                "Timezone": [
+                    { name: 'timezone', command: 'timezone', description: "Manage your timezone settings." },
+                    { name: 'timezone set', command: 'timezone set', description: "Set your timezone." },
+                    { name: 'timezone list', command: 'timezone list', description: "List all timezones." },
+                ],
+                "Utility": [
+                { name: 'autoplay', command: 'autoplay', description: 'Toggle AutoPlay mode on the player.' },
+    { name: 'avatar', command: 'avatar', description: 'Fetches the avatar of a user.' },
+    { name: 'boosters', command: 'boosters', description: 'View Server Boosters.' },
+    { name: 'calculator', command: 'calculator', description: 'Use the calculator for math.' },
+    { name: 'choose', command: 'choose', description: 'Make the bot choose your decisions.' },
+    { name: 'color', command: 'color', description: 'Show a color on an embed.' },
+    { name: 'duckduckgo', command: 'duckduckgo', description: 'Search something using duckduckgo.' },
+    { name: 'emojiinfo', command: 'emojiinfo', description: 'Show Info about an emoji.' },
+    { name: 'emojilist', command: 'emojilist', description: 'Get the server emojis.' },
+    { name: 'getcountry', command: 'getcountry', description: 'Get a user\'s country.' },
+    { name: 'getgender', command: 'getgender', description: 'Get a user\'s gender.' },
+    { name: 'ignore', command: 'ignore', description: 'Configures Ignore module for command or bypass of the bot.' },
+    { name: 'invites', command: 'invites', description: 'View all current active invites.' },
+    { name: 'map', command: 'map', description: 'View the location of a provided area.' },
+    { name: 'premium', command: 'premium', description: 'Toggles premium category for the bot.' },
+    { name: 'removeduplicates', command: 'removeduplicates', description: 'Remove the same emoji.' },
+    { name: 'removeemoji', command: 'removeemoji', description: 'Remove an emoji.' },
+    { name: 'removesticker', command: 'removesticker', description: 'Remove a sticker.' },
+    { name: 'renameemoji', command: 'renameemoji', description: 'Rename a custom emoji on the server.' },
+    { name: 'renamesticker', command: 'renamesticker', description: 'Rename a sticker.' },
+    { name: 'serveravatar', command: 'serveravatar', description: 'Get the server avatar.' },
+    { name: 'serverbanner', command: 'serverbanner', description: 'Get the server banner.' },
+    { name: 'serverinfo', command: 'serverinfo', description: 'Provides info about the server.' },
+    { name: 'setbanner', command: 'setbanner', description: 'Set the server banner.' },
+    { name: 'setcountry', command: 'setcountry', description: 'Set your country.' },
+    { name: 'setgender', command: 'setgender', description: 'Set your gender.' },
+    { name: 'seticon', command: 'seticon', description: 'Set the server icon.' },
+    { name: 'setup', command: 'setup', description: 'Run the setup.' },
+    { name: 'steal', command: 'steal', description: 'Steal an emoji.' },
+    { name: 'stealsticker', command: 'stealsticker', description: 'Steal a sticker.' },
+    { name: 'todo', command: 'todo', description: 'Manage your to-do list.' },
+    { name: 'userinfo', command: 'userinfo', description: 'userinfo <member>.' },
+    ],
+                "Vanity": [
+    { name: 'setupvanity', command: 'setupvanity', description: 'Set roles to be assigned when the specified status is active.' },
+    { name: 'vanityreset', command: 'vanityreset', description: 'Remove the role association with the specified status.' },
+    { name: 'vanityroleremove', command: 'vanityroleremove', description: 'Remove the role association with the specified status.' },
+                ],
+"Voice": [
+    { name: 'unvcdeafen', command: 'unvcdeafen', description: 'Undeafen a user.' },
+    { name: 'vcbitrate', command: 'vcbitrate', description: 'Set the VC bitrate.' },
+    { name: 'vcdeafen', command: 'vcdeafen', description: 'Deafen a user.' },
+    { name: 'vcghost', command: 'vcghost', description: 'Hide the VC.' },
+    { name: 'vclimit', command: 'vclimit', description: 'Add a limit of users that can join.' },
+    { name: 'vcmute', command: 'vcmute', description: 'Mute a user in the VC.' },
+    { name: 'vcpermit', command: 'vcpermit', description: 'Allow a role to join.' },
+    { name: 'vcregion', command: 'vcregion', description: 'Change the VC region.' },
+    { name: 'vcrename', command: 'vcrename', description: 'Rename the VC.' },
+    { name: 'vcunghost', command: 'vcunghost', description: 'Unhide the VC.' },
+    { name: 'vcunlock', command: 'vcunlock', description: 'Unlock the VC.' },
+    { name: 'vcunmute', command: 'vcunmute', description: 'Unmute a user in the VC.' },
+    { name: 'voicelock', command: 'voicelock', description: 'Lock the VC.' },
+    { name: 'vcreject', command: 'vcreject', description: 'Reject a user from joining.' },
+],
+                "Information": [
+                    { name: 'advice', command: 'advice', description: 'Get random advice.' },
+                    { name: 'banner', command: 'banner', description: 'Get a users banner.' },
+                    { name: 'bmi', command: 'bmi', description: 'Calculate your Body Mass Index (BMI).' },
+                    { name: 'boostcount', command: 'boostcount', description: 'Check the server boost count.' },
+                    { name: 'bots', command: 'bots', description: 'View all bots in the server.' },
+                    { name: 'emotes', command: 'emotes', description: 'View all server emotes.' },
+                    { name: 'halloween', command: 'halloween', description: 'View the halloween countdown.' },
+                    { name: 'invite', command: 'invite', description: 'Get the bots invite.' },
+                    { name: 'ping', command: 'ping', description: 'Get the ping.' },
+                    { name: 'robloxgroup', command: 'robloxgroup', description: 'Get information about a roblox group.' },
+                    { name: 'roblox', command: 'roblox', description: 'Get information about a user on roblox.' },
+                    { name: 'roleinfo', command: 'roleinfo', description: 'Get roleinfo.' },
+                    { name: 'serverlogo', command: 'serverlogo', description: 'View the server logo.' },
+                    { name: 'stats', command: 'stats', description: 'View the stats.' },
+                    { name: 'support', command: 'support', description: 'Get the support server.' },
+                    { name: 'urban', command: 'urban', description: 'Get a definition of a word.' },
+                    { name: 'vote', command: 'vote', description: 'Vote on the bot on top.gg.' },
+                    { name: 'weather', command: 'weather', description: 'View the weather of your state/city.' },
+                    { name: 'whois', command: 'whois', description: 'Get information about a user.' },
+                    { name: 'clusters', command: 'clusters', description: 'Get info about the cluster.' },
+                    { name: 'topcommands', command: 'topcommands', description: 'Displays the most used commands.' },
+                    { name: 'voicemastersetup', command: 'voicemastersetup', description: 'Setup Voice Master controls.' },
+                    { name: 'voicemasterreset', command: 'voicemasterreset', description: 'Resets voicemaster.' },
+                    { name: 'news-tracker', command: 'news-tracker', description: 'Get the latest news' },
+                    { name: 'deals', command: 'deals', description: 'Find the best deal for a video game' },
+                ],
+                "Level": [
+                    { name: 'level', command: 'level', description: 'View your level.' },
+                    { name: 'leveldisable', command: 'leveldisable', description: 'Disable the level system.' },
+                    { name: 'levelenable', command: 'levelenable', description: 'Renable the level system.' },
+                    { name: 'levelleaderboard', command: 'levelleaderboard', description: 'View the leaderboard of levels..' },
+                    { name: 'setlevel', command: 'setlevel', description: 'Set a users level.' },
+                    { name: 'setrate', command: 'setrate', description: 'Set the Rate of XP.' },
+                    { name: 'setxp', command: 'setxp', description: 'Set XP rate.' },
+                ],
+                "Misc": [
+                  { name: 'amazon', command: 'amazon', description: 'Search on amazon.'},
+                  { name: 'changephotosize', command: 'changephotosize', description: 'Change the photo size.' },
+                  { name: 'crypto', command: 'crypto', description: 'Check the current price of a cryptocurrency.' },
+                  { name: 'enlarge', command: 'enlarge', description: '"Enlarge an emoji.' },
+                  { name: 'membercount', command: 'membercount', description: 'Displays member counts in the current guild.' },
+                  { name: 'namehistory', command: 'namehistory', description: 'Displays your username history.' },
+                  { name: 'messagessent', command: 'messagessent', description: 'Shows how many messages a user has sent in the channel/server' },
+                  { name: 'permissionsview', command: 'permissionsview', description: 'View a user\'s permissions' },
+                  { name: 'poll', command: 'poll', description: 'Create a short poll' },
+                  { name: 'screenshot', command: 'screenshot', description: 'Take a screenshot of the provided URL.' },
+                  { name: 'userstatus', command: 'userstatus', description: 'See the profile of a user with their current status and presence.' },
+                ]
+            };
+
+            const selectedCommands = category === "all" ? allCommands : commands[category] || [];
+
+            selectedCommands.forEach(({ name, command, description }) => {
+                const commandItem = document.createElement('div');
+                commandItem.classList.add('command-border');
+                commandItem.innerHTML = `
+                    <div class="command-top">
+                        <h3>${name}</h3>
+                        <h5>/${command}</h5>
+                    </div>
+                    <p>${description}</p>
+                `;
+                commandList.appendChild(commandItem);
+            });
+        }
+
+        function openSearchOverlay() {
+            document.getElementById('search-overlay').style.display = 'flex'; // Show the overlay
+            document.getElementById('search-input').focus(); // Focus on the input
+        }
+
+        function closeSearchOverlay() {
+            document.getElementById('search-overlay').style.display = 'none'; // Hide the overlay
+            document.getElementById('search-input').value = ''; // Clear input
+            filter(); // Reset filter
+        }
+
+        function filter() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const commandItems = document.querySelectorAll('.command-border');
+
+            commandItems.forEach(item => {
+                const commandName = item.querySelector('h3').textContent.toLowerCase();
+                const commandDesc = item.querySelector('p').textContent.toLowerCase();
+                if (commandName.includes(input) || commandDesc.includes(input)) {
+                    item.style.display = ''; // Show item
+                } else {
+                    item.style.display = 'none'; // Hide item
+                }
+            });
+        }
+    </script>
+</body>
+</html>
