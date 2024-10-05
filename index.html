@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://betrayed.lol/commands">
-    <title>betrayed - cmds</title>
+    <title>betrayed - cmds - ray owns this web</title>
     <link rel="icon" href="https://cdn.discordapp.com/avatars/1252001166703853588/1ae97796d5ab14e4b18493a63a7a6137.webp?size=512">
     <meta name="og:site_name" content="betrayed.lol">
     <meta name="og:title" content="betrayed - commands">
@@ -30,6 +30,9 @@
             padding: 10px;
             border-radius: 5px;
             background-color: #222; 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: fadeInUp 0.5s forwards;
         }
         .command-top {
             display: flex;
@@ -42,39 +45,64 @@
             cursor: grab;
         }
         body {
-    background-color: #181818;
-    color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding-bottom: 60px; 
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column; 
-}
+            background-color: #181818;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 60px; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column; 
+        }
 
-.container {
-    flex: 1; 
-}
+        .container {
+            flex: 1; 
+        }
 
-.footer {
-    background-color: #222; 
-    color: #f0f0f0; /* Footer text color */
-    padding: 5px; /* Reduced padding */
-    text-align: center;
-    font-size: 0.8em; /* Reduced font size */
-    border-top: 1px solid #444; /* Top border */
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    width: 100%; /* Full width of the page */
-    position: absolute; /* Stick footer to bottom */
-    bottom: 0; /* Position at the bottom of the page */
-}
-.footer a {
-    color: #f0f0f0;
-    text-decoration: none;
-}
-.footer a:hover {
-    text-decoration: underline;
-}
+        .footer {
+            background-color: #222; 
+            color: #f0f0f0; 
+            padding: 5px; 
+            text-align: center;
+            font-size: 0.8em; 
+            border-top: 1px solid #444; 
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5); 
+            width: 100%; 
+            position: absolute; 
+            bottom: 0; 
+        }
+
+        .footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background: none; 
+            border: none; 
+            color: #f0f0f0; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease, transform 0.2s ease; 
+            padding: 10px; 
+            border-radius: 5px; 
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+            transform: scale(1.05); 
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -109,17 +137,76 @@
             </div>
         </div>
         <div class="command-list" id="command-list">
-            <!-- Example commands will be dynamically generated here -->
+            
         </div>
     </div>
     <div class="footer">
-        <h4><a href="https://discord.com/oauth2/authorize?client_id=1280681209604739204">Invite betrayed</a></h4>
-        <h4><a href="https://discord.gg/CNSYxykkVg">Support</a></h4>
-        <h4>Owner: <span>89fs</span>, Co-Owner: <span>.4xray_</span></h4>
+        <h4><a href="https://discord.com/oauth2/authorize?client_id=1280681209604739204">inv betrayed</a></h4>
+        <h4><a href="https://discord.gg/6rQAxM2w7X">support</a></h4>
+        <h4>owner: <span>89fs</span>, co-owner: <span>.4xray_</span></h4>
     </div>
 
     <script>
-const commands = {
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.pageX - document.getElementById('button-container').offsetLeft;
+            scrollLeft = document.getElementById('button-container').scrollLeft;
+            document.getElementById('button-container').style.cursor = 'grabbing';
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.getElementById('button-container').style.cursor = 'grab';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - document.getElementById('button-container').offsetLeft;
+            const walk = (x - startX) * 2; 
+            document.getElementById('button-container').scrollLeft = scrollLeft - walk;
+        }
+
+        document.getElementById('button-container').addEventListener('mousemove', drag);
+
+        function display(category) {
+            const commandList = document.getElementById('command-list');
+            commandList.innerHTML = ''; 
+
+            
+            const selectedCommands = commands[category] || [];
+
+            selectedCommands.forEach(command => {
+                const commandItem = document.createElement('div');
+                commandItem.className = 'command-border';
+                commandItem.innerHTML = `
+                    <div class="command-top">
+                        <h4>${command.name}</h4>
+                        <p>${command.command}</p>
+                    </div>
+                    <p>${command.description}</p>
+                `;
+                commandList.appendChild(commandItem);
+            });
+
+            
+            const commandBorders = document.querySelectorAll('.command-border');
+            commandBorders.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`; 
+            });
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            display('Game Info'); 
+        });
+
+        
+        const commands = {
                 "Antilink": [
                     { name: 'antilinkwhitelist', command: 'antilinkwhitelist', description: "Manage the anti-link whitelist (add or remove channels/users)." },
                     { name: 'blacklistlink', command: 'blacklistlink', description: "Add or remove a link from the blacklist, or check if a link is blacklisted." },
@@ -293,11 +380,11 @@ const commands = {
     { name: 'mutechannel', command: 'mutechannel', description: 'Mutes a user in a specific channel, preventing them from sending messages.' },
                 ],
                 "Movie": [
-                    { name: 'movieawards', command: 'movieawards', description: 'Get information on awards won by a movie.' },
-                    { name: 'moviefacts', command: 'moviefacts', description: 'Fetch interesting facts about a movie.' },
-                    { name: 'moviemusic', command: 'moviemusic', description: 'Fetch soundtrack information for a movie.' },
-                    { name: 'moviepicker', command: 'moviepicker', description: 'Randomly pick a movie for the night.' },
-                    { name: 'movieposter', command: 'movieposter', description: 'Get the poster for a specific movie.' },
+                    { name: 'movieawards', description: 'Get information on awards won by a movie.' },
+                    { name: 'moviefacts', description: 'Fetch interesting facts about a movie.' },
+                    { name: 'moviemusic', description: 'Fetch soundtrack information for a movie.' },
+                    { name: 'moviepicker', description: 'Randomly pick a movie for the night.' },
+                    { name: 'movieposter', description: 'Get the poster for a specific movie.' },
                 ],
                 "Music": [
                 { name: 'clearqueue', command: 'clearqueue', description: "Clear the queue." },
@@ -468,58 +555,9 @@ const commands = {
                   { name: 'poll', command: 'poll', description: 'Create a short poll' },
                   { name: 'screenshot', command: 'screenshot', description: 'Take a screenshot of the provided URL.' },
                   { name: 'userstatus', command: 'userstatus', description: 'See the profile of a user with their current status and presence.' },
+
                 ]
             };
-
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.pageX - document.getElementById('button-container').offsetLeft;
-            scrollLeft = document.getElementById('button-container').scrollLeft;
-            document.getElementById('button-container').style.cursor = 'grabbing';
-        }
-
-        function stopDrag() {
-            isDragging = false;
-            document.getElementById('button-container').style.cursor = 'grab';
-        }
-
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - document.getElementById('button-container').offsetLeft;
-            const walk = (x - startX) * 2; //scroll-fast
-            document.getElementById('button-container').scrollLeft = scrollLeft - walk;
-        }
-
-        document.getElementById('button-container').addEventListener('mousemove', drag);
-
-        function display(category) {
-            const commandList = document.getElementById('command-list');
-            commandList.innerHTML = ''; // Clear existing commands
-
-            // Example commands based on category
-            const selectedCommands = commands[category] || [];
-
-            selectedCommands.forEach(({ name, command, description }) => {
-                const commandItem = document.createElement('div');
-                commandItem.classList.add('command-border');
-                commandItem.innerHTML = `
-                    <div class="command-top">
-                        <h3 style="user-select: text;">${name}</h3>
-                        <h5 style="user-select: text;">,${command}</h5>
-                    </div>
-                    <p>${description}</p>
-                `;
-                commandList.appendChild(commandItem);
-            });
-        }
-
-        // Initial display for "Antilink" category
-        display('Antilink');
     </script>
 </body>
 </html>
