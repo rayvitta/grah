@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+V<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://betrayed.lol/commands">
-    <title>betrayed - cmds</title>
+    <title>betrayed - cmds - we own this joint</title>
     <link rel="icon" href="https://cdn.discordapp.com/avatars/1252001166703853588/1ae97796d5ab14e4b18493a63a7a6137.webp?size=512">
     <meta name="og:site_name" content="betrayed.lol">
     <meta name="og:title" content="betrayed - commands">
@@ -14,19 +14,22 @@
     <script src="/static/pure-snow.js" defer=""></script>
     <style>
         body {
-            background-color: #181818; /* Dark background */
-            color: #f0f0f0; /* Light text */
+            background-color: #181818; 
+            color: #f0f0f0; 
             font-family: Arial, sans-serif;
+            margin: 0; 
+            padding-bottom: 100px; 
+            position: relative;
         }
         .title h1, .title h3 {
-            color: #f0f0f0; /* Light title text */
+            color: #f0f0f0; 
         }
         .command-border {
-            border: 1px solid #444; /* Darker border for commands */
+            border: 1px solid #444; 
             margin: 10px;
             padding: 10px;
             border-radius: 5px;
-            background-color: #222; /* Dark command background */
+            background-color: #222; 
         }
         .command-top {
             display: flex;
@@ -38,26 +41,40 @@
             overflow-x: hidden;
             cursor: grab;
         }
-        .search input {
-            background-color: #333; /* Dark input background */
-            color: #fff; /* Light input text */
-            border: 1px solid #555; /* Input border */
-            border-radius: 5px;
-            padding: 5px;
-            width: 100%;
-        }
-        button {
-            background-color: #444; /* Button background */
-            color: #f0f0f0; /* Button text color */
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        button:hover {
-            background-color: #555; /* Button hover background */
-        }
+        body {
+    background-color: #181818;
+    color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-bottom: 60px; 
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+}
+
+.container {
+    flex: 1; 
+}
+
+.footer {
+    background-color: #222; 
+    color: #f0f0f0; /* Footer text color */
+    padding: 5px; /* Reduced padding */
+    text-align: center;
+    font-size: 0.8em; /* Reduced font size */
+    border-top: 1px solid #444; /* Top border */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    width: 100%; /* Full width of the page */
+    position: absolute; /* Stick footer to bottom */
+    bottom: 0; /* Position at the bottom of the page */
+}
+.footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
@@ -68,69 +85,41 @@
             <h3>commands</h3>
         </div>
     </header>
-        </div>
-    </header>
     <div class="container">
         <div class="top">
             <div class="buttons" id="button-container" onmousedown="startDrag(event)" onmouseup="stopDrag()" onmouseleave="stopDrag()">
                 <button onclick="display('Game Info')"><h3>Game Info <span>9</span></h3></button>
                 <button onclick="display('Starboard')"><h3>Starboard <span>8</span></h3></button>
-                <button onclick="display('Antilink')"><h3>Antilink</h3></button>
-                <button onclick="display('AntiNuke')"><h3>AntiNuke</h3></button>
-                <button onclick="display('Autorole')"><h3>Autorole</h3></button>
-                <button onclick="display('Economy')"><h3>Economy</h3></button>
-                <button onclick="display('Filter')"><h3>Filter</h3></button>
-                <button onclick="display('Fun')"><h3>Fun</h3></button>
-                <button onclick="display('Games')"><h3>Games</h3></button>
-                <button onclick="display('Information')"><h3>Information</h3></button>
-                <button onclick="display('LastFm')"><h3>LastFm</h3></button>
-                <button onclick="display('Level')"><h3>Level</h3></button>
-                <button onclick="display('Logging')"><h3>Logging</h3></button>
-                <button onclick="display('Misc')"><h3>Misc</h3></button>
-                <button onclick="display('Moderation')"><h3>Moderation</h3></button>
-                <button onclick="display('Movie')"><h3>Movie</h3></button>
-                <button onclick="display('Music')"><h3>Music</h3></button>
-                <button onclick="display('Settings')"><h3>Settings</h3></button>
+                <button onclick="display('Antilink')"><h3>Antilink <span>7</span></h3></button>
+                <button onclick="display('AntiNuke')"><h3>AntiNuke <span>5</span></h3></button>
+                <button onclick="display('Autorole')"><h3>Autorole <span>2</span></h3></button>
+                <button onclick="display('Economy')"><h3>Economy <span>15</span></h3></button>
+                <button onclick="display('Filter')"><h3>Filter <span>16</span></h3></button>
+                <button onclick="display('Fun')"><h3>Fun <span>12</span></h3></button>
+                <button onclick="display('Games')"><h3>Games <span>23</span></h3></button>
+                <button onclick="display('Information')"><h3>Information <span>25</span></h3></button>
+                <button onclick="display('LastFm')"><h3>LastFm <span>11</span></h3></button>
+                <button onclick="display('Level')"><h3>Level <span>7</span></h3></button>
+                <button onclick="display('Logging')"><h3>Logging <span>7</span></h3></button>
+                <button onclick="display('Misc')"><h3>Misc <span>11</span></h3></button>
+                <button onclick="display('Moderation')"><h3>Moderation <span>37</span></h3></button>
+                <button onclick="display('Movie')"><h3>Movie <span>6</span></h3></button>
+                <button onclick="display('Music')"><h3>Music <span>17</span></h3></button>
+                <button onclick="display('Settings')"><h3>Settings<span>13</span></h3></button>
             </div>
         </div>
         <div class="command-list" id="command-list">
             <!-- Example commands will be dynamically generated here -->
         </div>
     </div>
+    <div class="footer">
+        <h4><a href="https://discord.com/oauth2/authorize?client_id=1280681209604739204">Invite betrayed</a></h4>
+        <h4><a href="https://discord.gg/CNSYxykkVg">Support</a></h4>
+        <h4>Owner: <span>89fs</span>, Co-Owner: <span>.4xray_</span></h4>
+    </div>
 
     <script>
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-
-        function startDrag(e) {
-            isDragging = true;
-            startX = e.pageX - document.getElementById('button-container').offsetLeft;
-            scrollLeft = document.getElementById('button-container').scrollLeft;
-            document.getElementById('button-container').style.cursor = 'grabbing';
-        }
-
-        function stopDrag() {
-            isDragging = false;
-            document.getElementById('button-container').style.cursor = 'grab';
-        }
-
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - document.getElementById('button-container').offsetLeft;
-            const walk = (x - startX) * 2; //scroll-fast
-            document.getElementById('button-container').scrollLeft = scrollLeft - walk;
-        }
-
-        document.getElementById('button-container').addEventListener('mousemove', drag);
-
-        function display(category) {
-            const commandList = document.getElementById('command-list');
-            commandList.innerHTML = ''; // Clear existing commands
-
-            // Example commands based on category
-            const commands = {
+const commands = {
                 "Antilink": [
                     { name: 'antilinkwhitelist', command: 'antilinkwhitelist', description: "Manage the anti-link whitelist (add or remove channels/users)." },
                     { name: 'blacklistlink', command: 'blacklistlink', description: "Add or remove a link from the blacklist, or check if a link is blacklisted." },
@@ -304,11 +293,11 @@
     { name: 'mutechannel', command: 'mutechannel', description: 'Mutes a user in a specific channel, preventing them from sending messages.' },
                 ],
                 "Movie": [
-                    { name: 'movieawards', description: 'Get information on awards won by a movie.' },
-                    { name: 'moviefacts', description: 'Fetch interesting facts about a movie.' },
-                    { name: 'moviemusic', description: 'Fetch soundtrack information for a movie.' },
-                    { name: 'moviepicker', description: 'Randomly pick a movie for the night.' },
-                    { name: 'movieposter', description: 'Get the poster for a specific movie.' },
+                    { name: 'movieawards', command: 'movieawards', description: 'Get information on awards won by a movie.' },
+                    { name: 'moviefacts', command: 'moviefacts', description: 'Fetch interesting facts about a movie.' },
+                    { name: 'moviemusic', command: 'moviemusic', description: 'Fetch soundtrack information for a movie.' },
+                    { name: 'moviepicker', command: 'moviepicker', description: 'Randomly pick a movie for the night.' },
+                    { name: 'movieposter', command: 'movieposter', description: 'Get the poster for a specific movie.' },
                 ],
                 "Music": [
                 { name: 'clearqueue', command: 'clearqueue', description: "Clear the queue." },
@@ -482,15 +471,46 @@
                 ]
             };
 
-            const selectedCommands = category === "all" ? allCommands : commands[category] || [];
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.pageX - document.getElementById('button-container').offsetLeft;
+            scrollLeft = document.getElementById('button-container').scrollLeft;
+            document.getElementById('button-container').style.cursor = 'grabbing';
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.getElementById('button-container').style.cursor = 'grab';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - document.getElementById('button-container').offsetLeft;
+            const walk = (x - startX) * 2; //scroll-fast
+            document.getElementById('button-container').scrollLeft = scrollLeft - walk;
+        }
+
+        document.getElementById('button-container').addEventListener('mousemove', drag);
+
+        function display(category) {
+            const commandList = document.getElementById('command-list');
+            commandList.innerHTML = ''; // Clear existing commands
+
+            // Example commands based on category
+            const selectedCommands = commands[category] || [];
 
             selectedCommands.forEach(({ name, command, description }) => {
                 const commandItem = document.createElement('div');
                 commandItem.classList.add('command-border');
                 commandItem.innerHTML = `
                     <div class="command-top">
-                        <h3>${name}</h3>
-                        <h5>/${command}</h5>
+                        <h3 style="user-select: text;">${name}</h3>
+                        <h5 style="user-select: text;">,${command}</h5>
                     </div>
                     <p>${description}</p>
                 `;
@@ -498,31 +518,8 @@
             });
         }
 
-        function openSearchOverlay() {
-            document.getElementById('search-overlay').style.display = 'flex'; // Show the overlay
-            document.getElementById('search-input').focus(); // Focus on the input
-        }
-
-        function closeSearchOverlay() {
-            document.getElementById('search-overlay').style.display = 'none'; // Hide the overlay
-            document.getElementById('search-input').value = ''; // Clear input
-            filter(); // Reset filter
-        }
-
-        function filter() {
-            const input = document.getElementById('search-input').value.toLowerCase();
-            const commandItems = document.querySelectorAll('.command-border');
-
-            commandItems.forEach(item => {
-                const commandName = item.querySelector('h3').textContent.toLowerCase();
-                const commandDesc = item.querySelector('p').textContent.toLowerCase();
-                if (commandName.includes(input) || commandDesc.includes(input)) {
-                    item.style.display = ''; // Show item
-                } else {
-                    item.style.display = 'none'; // Hide item
-                }
-            });
-        }
+        // Initial display for "Antilink" category
+        display('Antilink');
     </script>
 </body>
 </html>
