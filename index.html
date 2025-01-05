@@ -16,6 +16,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         .container {
             background-color: rgba(0, 0, 0, 0.7);
@@ -24,6 +25,7 @@
             width: 300px;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden until user clicks */
         }
         h1 {
             font-family: 'Bungee', cursive;
@@ -48,7 +50,7 @@
             text-decoration: underline;
         }
         .button {
-            background-color: #FF0000;
+            background-color: #FF0004; /* Changed to red */
             border: none;
             color: white;
             padding: 10px 20px;
@@ -61,7 +63,7 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button:hover {
-            background-color: #FF0000;
+            background-color: #FF0004;
             transform: translateY(-2px);
         }
         .button:before {
@@ -87,21 +89,40 @@
             outline: none;
             border: none;
         }
+        .enter-message {
+            position: absolute;
+            color: #FF0004;
+            font-size: 24px;
+            font-family: 'Bungee', cursive;
+            text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.8);
+            cursor: pointer;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
+    <div class="enter-message" onclick="enterWebsite()">Tap to Enter</div>
     <div class="container">
         <h1>@raybladi is not terminated</h1>
-        <p><a href=https://ammo.lol/ray " target="_blank">don't click 🍒</a></p>
+        <p><a href="https://ammo.lol/ray" target="_blank">don't click 🍒</a></p>
         <button class="button">active</button>
         <p class="update-message">if i get termed, this will be updated.</p>
         <!-- Styled audio player -->
         <div class="audio-container">
             <audio controls autoplay>
-                <source src="https://cdn.discordapp.com/attachments/1272680849795453041/1325416998666108979/Bitch_Yeah_l_Preview_for_Kingxe_l_Need_a_FREE_Fortnite_MontageHighlights_Editor_.mp3?ex=677bb645&is=677a64c5&hm=cfc0e45e17f45fdcab86a46e66687643761500279f22bce09a65c7b42e94ce4b&" type="audio/mp3">
-                Your browser does not support the audio element.
+                <source src="https://cdn.discordapp.com/attachments/1272680849795453041/1325422041385537598/Ken_Carson_-_ss_Official_Audio.mp3?ex=677bbaf7&is=677a6977&hm=525e8c84408c0a790dd374e837d3ac608c836070a39ede9f6338f3a73749c2b6&" type="audio/mp3">
+                your browser does not support the audio element.
             </audio>
         </div>
     </div>
+
+    <script>
+        function enterWebsite() {
+            // Hide the "Tap to Enter" message
+            document.querySelector('.enter-message').style.display = 'none';
+            // Show the main content after tap
+            document.querySelector('.container').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
