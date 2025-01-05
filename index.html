@@ -108,6 +108,24 @@
             text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.8);
             display: none; /* Initially hidden */
         }
+
+        /* Mute button style */
+        .mute-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        .mute-button:hover {
+            background-color: #333;
+        }
     </style>
 </head>
 <body>
@@ -119,7 +137,7 @@
         <p class="update-message">if i get termed, this will be updated.</p>
         <!-- Styled audio player -->
         <div class="audio-container">
-            <audio id="audio-player">
+            <audio id="audio-player" autoplay>
                 <source src="https://cdn.discordapp.com/attachments/1272680849795453041/1325422041385537598/Ken_Carson_-_ss_Official_Audio.mp3?ex=677bbaf7&is=677a6977&hm=525e8c84408c0a790dd374e837d3ac608c836070a39ede9f6338f3a73749c2b6&" type="audio/mp3">
                 your browser does not support the audio element.
             </audio>
@@ -127,6 +145,9 @@
     </div>
     <!-- IP address will appear below the main box -->
     <div id="ip-container" class="ip-address"></div>
+
+    <!-- Mute button -->
+    <button class="mute-button" onclick="toggleMute()">🔊</button>
 
     <script>
         let audioPlayer = document.getElementById('audio-player');
@@ -153,6 +174,17 @@
             audioPlayer.play();
             // Fetch and display the user's IP address
             fetchUserIP();
+        }
+
+        // Function to toggle mute/unmute the audio
+        function toggleMute() {
+            if (audioPlayer.muted) {
+                audioPlayer.muted = false;
+                document.querySelector('.mute-button').innerText = '🔊';  // Change icon to sound on
+            } else {
+                audioPlayer.muted = true;
+                document.querySelector('.mute-button').innerText = '🔇';  // Change icon to mute
+            }
         }
     </script>
 </body>
