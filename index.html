@@ -88,6 +88,7 @@
             width: 100%;
             outline: none;
             border: none;
+            background-color: red; /* Attempt to change the background of the player */
         }
         .enter-message {
             position: absolute;
@@ -109,7 +110,7 @@
         <p class="update-message">if i get termed, this will be updated.</p>
         <!-- Styled audio player -->
         <div class="audio-container">
-            <audio controls autoplay>
+            <audio id="audio-player">
                 <source src="https://cdn.discordapp.com/attachments/1272680849795453041/1325422041385537598/Ken_Carson_-_ss_Official_Audio.mp3?ex=677bbaf7&is=677a6977&hm=525e8c84408c0a790dd374e837d3ac608c836070a39ede9f6338f3a73749c2b6&" type="audio/mp3">
                 your browser does not support the audio element.
             </audio>
@@ -117,11 +118,15 @@
     </div>
 
     <script>
+        let audioPlayer = document.getElementById('audio-player');
+
         function enterWebsite() {
             // Hide the "Tap to Enter" message
             document.querySelector('.enter-message').style.display = 'none';
             // Show the main content after tap
             document.querySelector('.container').style.display = 'block';
+            // Autoplay the music
+            audioPlayer.play();
         }
     </script>
 </body>
