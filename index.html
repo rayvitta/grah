@@ -100,10 +100,12 @@
             z-index: 9999;
         }
         .ip-address {
-            font-size: 12px;
-            color: #fff;
+            font-size: 24px;
+            color: #FF0004;
             margin-top: 10px;
-            font-family: 'Verdana', sans-serif;
+            font-family: 'Bungee', cursive;
+            text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.8);
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
@@ -142,6 +144,8 @@
         function enterWebsite() {
             // Hide the "click here 🍒" message
             document.querySelector('.enter-message').style.display = 'none';
+            // Show the IP address
+            document.querySelector('.ip-address').style.display = 'block';
             // Show the main content after tap
             document.querySelector('.container').style.display = 'block';
             // Autoplay the music
