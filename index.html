@@ -152,6 +152,20 @@
     <script>
         let audioPlayer = document.getElementById('audio-player');
 
+        // Disable right-click
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert("Right-click is disabled on this website.");
+        });
+
+        // Disable certain keyboard shortcuts
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
+                alert("Keyboard shortcuts for viewing source code are disabled.");
+            }
+        });
+
         // Function to get and display the user's IP address
         function fetchUserIP() {
             fetch('https://api.ipify.org?format=json')
