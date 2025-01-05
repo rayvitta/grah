@@ -100,9 +100,9 @@
             z-index: 9999;
         }
         .ip-address {
-            font-size: 24px;
+            font-size: 18px;
             color: #FF0004;
-            margin-top: 10px;
+            margin-top: 20px; /* Adds some space below the audio */
             font-family: 'Bungee', cursive;
             text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.8);
             display: none; /* Initially hidden */
@@ -111,7 +111,6 @@
 </head>
 <body>
     <div class="enter-message" onclick="enterWebsite()">Tap to Enter</div>
-    <div id="ip-container" class="ip-address"></div>
     <div class="container">
         <h1>@raybladi is not terminated</h1>
         <p><a href="https://ammo.lol/ray" target="_blank">don't click 🍒</a></p>
@@ -124,6 +123,7 @@
                 your browser does not support the audio element.
             </audio>
         </div>
+        <div id="ip-container" class="ip-address"></div>
     </div>
 
     <script>
@@ -144,16 +144,13 @@
         function enterWebsite() {
             // Hide the "click here 🍒" message
             document.querySelector('.enter-message').style.display = 'none';
-            // Show the IP address
-            document.querySelector('.ip-address').style.display = 'block';
             // Show the main content after tap
             document.querySelector('.container').style.display = 'block';
             // Autoplay the music
             audioPlayer.play();
+            // Fetch and display the user's IP address
+            fetchUserIP();
         }
-
-        // Fetch IP address when the page loads
-        fetchUserIP();
     </script>
 </body>
 </html>
