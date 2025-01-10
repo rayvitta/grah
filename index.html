@@ -69,6 +69,17 @@
             font-size: 16px;
             margin-right: 5px;
         }
+        .click-me {
+            font-family: 'Bungee', cursive;
+            font-size: 20px;
+            color: #59c2f5;
+            margin-top: 20px;
+            text-shadow: 2px 2px 8px rgba(255, 165, 0, 0.8);
+            cursor: pointer;
+        }
+        .click-me:hover {
+            text-decoration: underline;
+        }
         .update-message {
             font-size: 12px;
             color: #888;
@@ -76,11 +87,11 @@
         }
         .audio-container {
             margin-top: 20px;
-            background-color: rgba(0, 0, 255, 0.3); /* Red transparent background */
-            border: 2px solid rgba(0, 0, 255, 0.6); /* Darker red border */
+            background-color: rgba(89, 194, 245, 0.3); /* Blue transparent background */
+            border: 2px solid rgba(89, 194, 245, 0.6); /* Darker blue border */
             border-radius: 10px;
             padding: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 255, 0.5); /* Glow effect */
+            box-shadow: 0 4px 15px rgba(89, 194, 245, 0.5); /* Glow effect */
         }
         .audio-container audio {
             width: 100%;
@@ -92,16 +103,18 @@
 <body>
     <div class="container">
         <h1>ray</h1>
-	<p><a href="https://emoji.gg/emoji/7561-discord-clyde"><img src="https://cdn3.emoji.gg/emojis/7561-discord-clyde.png" width="64px" height="64px" alt="discord_clyde"></a><p>
+        <p><a href="https://www.roblox.com/users/2587594044/profile" target="_blank">𓆝 𓆟 𓆞</a></p>
         <button class="button">active</button>
         <p class="update-message">social media manager, contributed to 5M+</p>
+        <!-- ??? -->
+        <div class="click-me" onclick="alert('hi, my discord is @.4xray_')">???</div>
         <!-- Styled audio player -->
         <div class="audio-container">
-            <audio controls autoplay>
-                <source src="https://cdn.discordapp.com/attachments/929835145026994196/1327109783332851732/NCTS_-_NEXT.mp3?ex=6781decc&is=67808d4c&hm=e5fe754c79e693d991a16e6f6fbe4eb62255fdc239b92675462ce37b06e99c35&" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+    <audio controls autoplay loop>
+        <source src="https://cdn.discordapp.com/attachments/929835145026994196/1327126237524791317/phonk.me_KIIXSHI_-_GHOST.mp3?ex=6781ee1f&is=67809c9f&hm=1f19305c23748d0ca6ad0404372be78a61abe83a44af93e3a37f4ca75c0cb3e0&" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+	</div>
     </div>
 </body>
 </html>
