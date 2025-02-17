@@ -3,294 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>!</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="./snowflakes.js" defer></script>
-    <link rel="icon" href="https://files.catbox.moe/9dtssy.png" type="image/x-icon">
+    <title>@r4cu owns this</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            overflow: hidden;
-            background: #0c0c0c;
-            color: #c9e2ff;
-            font-family: 'Courier New', Courier, monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling due to image zoom */
+            background: url('https://cdn.discordapp.com/attachments/1259218714176262324/1340850141829136454/download.gif?ex=67b3db81&is=67b28a01&hm=6e1bc5fc3ca2958f4e250febc56d61baab73bfee27cb435ac2670547d1a6362a&') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif; /* Keep Roboto font */
+            color: white;
+            text-align: center;
+            transition: background-size 0.5s ease; /* Smooth zoom effect on background */
         }
 
-        .main-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 800px;
-            height: 400px;
-            background: #141414;
-            border: 2px solid #c9e2ff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px #c9e2ff;
-            overflow: hidden;
-            padding: 0; /* Ensure no padding */
-        }
-        
-        .left-column,
-        .right-column {
-            flex: 1;
-            margin: 0; /* Remove any default margin */
-            padding: 0; /* Remove padding */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .left-column {
-            border-right: 2px solid #c9e2ff; /* Keep the line between the columns */
-            padding: 10px;
+        body:hover {
+            background-size: 110%; /* Zoom in on background image */
         }
 
-        .left-column img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .container {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
             padding: 20px;
-        }
-        
-        .song-info {
-            color: #c9e2ff;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .song-info span {
-            font-size: 0.85rem;
-            color: #b3b3b3;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px); /* Start slightly below */
+            animation: fadeIn 1s forwards; /* Trigger animation */
         }
 
-        .control-buttons {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Fade in */
+                transform: translateY(0); /* Move to original position */
+            }
         }
 
-        .control-buttons button {
-            background: none;
-            border: none;
-            color: #c9e2ff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
+        h1, p {
+            margin: 10px 0;
+            transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
         }
 
-        .control-buttons button:hover {
-            transform: scale(1.2);
-            color: #fff;
+        h1:hover, p:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            color: #ffcc00; /* Change color on hover */
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 5px;
-            background: #444;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
+        h1 {
+            font-size: 2.5em;
         }
 
-        .progress-bar .progress {
-            height: 100%;
-            width: 0%;
-            background: #c9e2ff;
-            border-radius: 5px;
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            color: #b3b3b3;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-
-        audio {
-            display: none;
-        }
-
-        .logo-container {
-            position: absolute;
-            bottom: 165px;
-            display: flex;
-            gap: 85px;
-            justify-content: center;
-            width: 100%;
-        }
-    
-        .logo-container a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 85px;
-            height: 55px;
-            transition: transform 0.3s ease;
-            margin-top: 10px;
-            border: 2px solid #c9e2ff; /* Add a 2px solid border */
-            border-radius: 20px; /* Optional: rounds the corners slightly */
-            background-color: #141414;
-            box-shadow: 0 0 20px #c9e2ff;
-        }
-    
-        .logo-container a:hover {
-            transform: scale(1.2);
-        }
-    
-        .logo-container img {
-            max-width: 100%;
-            max-height: 100%;
+        p {
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
 
-<div class="main-content">
-    <div class="left-column">
-        <img src="https://cdn.discordapp.com/attachments/819970119383515156/1338298071557345413/Dos_Ascii_GIF.gif?ex=67aa92b4&is=67a94134&hm=42a936354363a6fb246a8dbfab64baabcef87bdfc43caeaa13acebbc41c30e07&" alt="Animated GIF">
-    </div>
-    <div class="right-column">
-        <div class="song-info">
-            <span id="songName">Song Name</span>
-            <span id="artistName">Artist Name</span>
-        </div>
-        <div class="control-buttons">
-            <button id="prevSong"><i class="fas fa-backward"></i></button>
-            <button id="playPause"><i class="fas fa-play"></i></button>
-            <button id="nextSong"><i class="fas fa-forward"></i></button>
-        </div>
-        <div class="progress-bar" id="progressBar">
-            <div class="progress" id="progress"></div>
-        </div>
-        <div class="time-display">
-            <span id="currentTime">0:00</span>
-            <span id="durationTime">0:00</span>
-        </div>
-    </div>
+<div class="container">
+    <h1>⇓</h1>
+    <p>contact me if needed,</p>
+    <p><strong>rxware@execs.com</strong></p>
+    <p><em>business purposes only</em></p>
 </div>
-
-<div class="logo-container">
-    <a href="https://www.discord.gg/rie" target="_blank">
-        <img src="https://cdn.discordapp.com/attachments/819970119383515156/1338299422047473674/Drew_McIntyre_Titantron_2020-2024_HD_1.mp3?ex=67aa93f6&is=67a94276&hm=568714ea8b374dca4dbd559b6b2a8079e73515667a4f9e9099ac56c090067145&" alt="Discord">
-    </a>
-</div>
-
-<audio id="musics" preload="auto" loop>
-    <source src="https://cdn.discordapp.com/attachments/819970119383515156/1338299422047473674/Drew_McIntyre_Titantron_2020-2024_HD_1.mp3?ex=67aa93f6&is=67a94276&hm=568714ea8b374dca4dbd559b6b2a8079e73515667a4f9e9099ac56c090067145&" type="audio/mp3">
-</audio>
-
-<script>
-    const audio = document.getElementById('musics');
-    const playPauseButton = document.getElementById('playPause');
-    const prevSongButton = document.getElementById('prevSong');
-    const nextSongButton = document.getElementById('nextSong');
-    const songNameDisplay = document.getElementById('songName');
-    const artistNameDisplay = document.getElementById('artistName');
-    const albumArt = document.getElementById('albumArt');
-    const progressBar = document.getElementById('progressBar');
-    const progress = document.getElementById('progress');
-    const currentTimeDisplay = document.getElementById('currentTime');
-    const durationTimeDisplay = document.getElementById('durationTime');
-
-    const songs = [
-        {
-            src: "https://cdn.discordapp.com/attachments/819970119383515156/1338299422047473674/Drew_McIntyre_Titantron_2020-2024_HD_1.mp3?ex=67aa93f6&is=67a94276&hm=568714ea8b374dca4dbd559b6b2a8079e73515667a4f9e9099ac56c090067145&",
-            name: "fisch social media manager",
-            artist: "- ray",
-            albumArt: "https://via.placeholder.com/150"
-        },
-        {
-            src: "https://cdn.discordapp.com/attachments/819970119383515156/1338299422047473674/Drew_McIntyre_Titantron_2020-2024_HD_1.mp3?ex=67aa93f6&is=67a94276&hm=568714ea8b374dca4dbd559b6b2a8079e73515667a4f9e9099ac56c090067145&",
-            name: "fisch social media manager",
-            artist: "- ray",
-            albumArt: "https://via.placeholder.com/150"
-        }
-    ];
-
-    let currentSongIndex = 0;
-
-    function updateSongInfo() {
-        const currentSong = songs[currentSongIndex];
-        audio.src = currentSong.src;
-        songNameDisplay.textContent = currentSong.name;
-        artistNameDisplay.textContent = currentSong.artist;
-        albumArt.style.backgroundImage = `url(${currentSong.albumArt})`;
-
-        audio.load();
-        audio.play();
-    }
-
-    function togglePlayPause() {
-        if (audio.paused) {
-            audio.play();
-            playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            audio.pause();
-            playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
-        }
-    }
-
-    function nextSong() {
-        currentSongIndex = (currentSongIndex + 1) % songs.length;
-        updateSongInfo();
-        audio.play();
-    }
-
-    function prevSong() {
-        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-        updateSongInfo();
-        audio.play();
-    }
-
-    function updateProgress() {
-        const currentTime = audio.currentTime;
-        const duration = audio.duration;
-        const progressPercent = (currentTime / duration) * 100;
-
-        progress.style.width = `${progressPercent}%`;
-        currentTimeDisplay.textContent = formatTime(currentTime);
-        durationTimeDisplay.textContent = formatTime(duration);
-    }
-
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    }
-
-    function seek(event) {
-        const progressBarWidth = progressBar.offsetWidth;
-        const clickPosition = event.offsetX;
-        const duration = audio.duration;
-        audio.currentTime = (clickPosition / progressBarWidth) * duration;
-    }
-
-    playPauseButton.addEventListener('click', togglePlayPause);
-    nextSongButton.addEventListener('click', nextSong);
-    prevSongButton.addEventListener('click', prevSong);
-    progressBar.addEventListener('click', seek);
-
-    audio.addEventListener('timeupdate', updateProgress);
-    audio.addEventListener('ended', nextSong);
-
-    updateSongInfo();
-</script>
-
-<script>
-// Your snowflakes.js code here
-</script>
 
 </body>
 </html>
